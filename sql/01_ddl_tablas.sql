@@ -33,3 +33,14 @@ CREATE TABLE regla_reposicion (
     punto_reposicion INTEGER NOT NULL CHECK (punto_reposicion >= 0),
     id_producto INTEGER UNIQUE NOT NULL REFERENCES producto(id_producto) ON DELETE CASCADE
 );
+
+-- 5. Tabla PROVEEDOR
+CREATE TABLE proveedor (
+    id_proveedor SERIAL PRIMARY KEY,
+    ruc VARCHAR(11) UNIQUE NOT NULL,
+    razon_social VARCHAR(150) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    telefono VARCHAR(20) NULL,
+    correo VARCHAR(100) NULL,
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('ACTIVO', 'INACTIVO'))
+);
