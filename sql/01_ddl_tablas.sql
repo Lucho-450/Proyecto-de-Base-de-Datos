@@ -24,3 +24,12 @@ CREATE TABLE producto (
     id_categoria INTEGER NOT NULL REFERENCES categoria(id_categoria),
     id_unidad INTEGER NOT NULL REFERENCES unidad_medida(id_unidad)
 );
+
+-- 4. Tabla REGLA_REPOSICION
+CREATE TABLE regla_reposicion (
+    id_regla SERIAL PRIMARY KEY,
+    stock_minimo INTEGER NOT NULL CHECK (stock_minimo >= 0),
+    stock_maximo INTEGER NOT NULL CHECK (stock_maximo >= stock_minimo),
+    punto_reposicion INTEGER NOT NULL CHECK (punto_reposicion >= 0),
+    id_producto INTEGER UNIQUE NOT NULL REFERENCES producto(id_producto) ON DELETE CASCADE
+);
