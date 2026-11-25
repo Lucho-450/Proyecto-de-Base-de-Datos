@@ -12,3 +12,15 @@ CREATE TABLE unidad_medida (
     nombre VARCHAR(50) UNIQUE NOT NULL,
     abreviatura VARCHAR(10) NOT NULL
 );
+
+-- 3. Tabla PRODUCTO
+CREATE TABLE producto (
+    id_producto SERIAL PRIMARY KEY,
+    codigo_barras VARCHAR(50) UNIQUE NOT NULL,
+    nombre VARCHAR(150) NOT NULL,
+    descripcion VARCHAR(255) NULL,
+    precio_referencia NUMERIC(10,2) NOT NULL CHECK (precio_referencia >= 0),
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('ACTIVO', 'INACTIVO')),
+    id_categoria INTEGER NOT NULL REFERENCES categoria(id_categoria),
+    id_unidad INTEGER NOT NULL REFERENCES unidad_medida(id_unidad)
+);
