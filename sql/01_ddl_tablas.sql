@@ -155,5 +155,17 @@ CREATE TABLE conteo_inventario (
 );
 
 
+-- 17. Tabla DETALLE_CONTEO
+CREATE TABLE detalle_conteo (
+    id_detalle_conteo SERIAL PRIMARY KEY,
+    id_conteo INT NOT NULL REFERENCES conteo_inventario(id_conteo) ON DELETE CASCADE,
+    id_producto INT NOT NULL REFERENCES producto(id_producto),
+    id_lote INT REFERENCES lote(id_lote) ON DELETE SET NULL,
+    id_ubicacion INT REFERENCES ubicacion_almacen(id_ubicacion) ON DELETE SET NULL,
+    cantidad_sistema NUMERIC(14,4) NOT NULL DEFAULT 0 CHECK (cantidad_sistema >= 0),
+    cantidad_contada NUMERIC(14,4) NOT NULL DEFAULT 0 CHECK (cantidad_contada >= 0)
+);
+
+
 
 
