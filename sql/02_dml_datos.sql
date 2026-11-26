@@ -139,3 +139,8 @@ INSERT INTO detalle_conteo (id_conteo, id_producto, id_lote, id_ubicacion, canti
 VALUES (1, 1, 1, 1, 140.0000, 138.0000),
        (1, 2, 2, 3, 75.0000, 75.0000),
        (2, 5, 5, 4, 250.0000, 245.0000);
+
+-- 18. Tabla AJUSTE_INVENTARIO
+INSERT INTO ajuste_inventario (id_detalle_conteo, cantidad_ajustada, motivo, estado)
+VALUES (1, -2.0000, 'Diferencia detectada en conteo cíclico por envases rotos', 'PENDIENTE'),
+       (3, -5.0000, 'Merma natural por deshidratación de fruta', 'APROBADO');
