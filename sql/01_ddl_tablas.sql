@@ -112,3 +112,13 @@ CREATE TABLE recepcion_mercaderia (
     estado VARCHAR(20) NOT NULL,
     observaciones VARCHAR(255) NULL
 );
+
+-- 13. Tabla DETALLE_RECEPCION
+CREATE TABLE detalle_recepcion (
+    id_detalle_recepcion SERIAL PRIMARY KEY,
+    id_recepcion INT NOT NULL REFERENCES recepcion_mercaderia(id_recepcion) ON DELETE CASCADE,
+    id_lote INT NOT NULL REFERENCES lote(id_lote),
+    cantidad_recibida INT NOT NULL CHECK (cantidad_recibida > 0),
+    cantidad_aceptada INT NOT NULL CHECK (cantidad_aceptada >= 0),
+    cantidad_rechazada INT NOT NULL CHECK (cantidad_rechazada >= 0)
+);
