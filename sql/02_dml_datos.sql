@@ -1,3 +1,5 @@
+TRUNCATE TABLE categoria, unidad_medida, proveedor, ubicacion_almacen, tipo_movimiento, conteo_inventario RESTART IDENTITY CASCADE;
+
 -- 1. Tabla CATEGORIA
 INSERT INTO categoria (nombre, descripcion, estado)
 VALUES ('Lacteos', 'Derivados de la leche', 'ACTIVO'),
@@ -56,13 +58,13 @@ VALUES ('LAI-001', 9.50, 2, 1, 1),
 
 -- 7. Tabla ORDEN_COMPRA
 INSERT INTO orden_compra (fecha_emision, fecha_entrega_prevista, estado, id_proveedor)
-VALUES ('2026-11-01', '2026-11-05', 'Aprobada', 1),
-('2026-11-02', '2026-11-06', 'Pendiente', 2),
-('2026-11-02', '2026-11-04', 'Pendiente', 3),
-('2026-11-03', '2026-11-07', 'Recibida', 4),
-('2026-11-03', '2026-11-05', 'Cancelada', 5);
+VALUES ('2026-11-01', '2026-11-05', 'ENVIADA', 1),
+       ('2026-11-02', '2026-11-06', 'PENDIENTE', 2),
+       ('2026-11-02', '2026-11-04', 'PENDIENTE', 3),
+       ('2026-11-03', '2026-11-07', 'RECIBIDA', 4),
+       ('2026-11-03', '2026-11-05', 'CANCELADA', 5);
 
-UPDATE orden_compra SET estado = 'Recibida' WHERE id_orden = 2;
+UPDATE orden_compra SET estado = 'RECIBIDA' WHERE id_orden = 2;
 
 -- 8. Tabla DETALLE_ORDEN_COMPRA
 INSERT INTO detalle_orden_compra (cantidad_solicitada, costo_unitario, id_orden, id_producto)
