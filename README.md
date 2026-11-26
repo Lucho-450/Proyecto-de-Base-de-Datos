@@ -30,7 +30,7 @@ El sistema cubre el ciclo operativo de inventario y abastecimiento mediante **18
 
 * `sql/01_ddl_tablas.sql`: Creación de las 18 tablas, llaves primarias, llaves foráneas y restricciones `CHECK` en `minimarket_db`.
 * `sql/02_dml_datos.sql`: Poblamiento inicial de datos y actualizaciones de prueba, con `TRUNCATE ... RESTART IDENTITY CASCADE` para permitir reejecuciones limpias sin duplicados ni desfase de secuencias.
-* `sql/03_indices_optimizacion.sql`: Creación de índices (`CREATE INDEX IF NOT EXISTS`) y consultas con `EXPLAIN ANALYZE` para evaluar el rendimiento.
+* `sql/03_indices_optimizacion.sql`: Creación de índices (`CREATE INDEX`) y consultas con `EXPLAIN ANALYZE` para evaluar el rendimiento.
 * `sql/04_modulo_jsonb.sql`: Implementación de atributos flexibles en `JSONB` y creación de índice `GIN` sobre `producto`.
 * `README.md`: Documentación general del proyecto y evidencias de optimización.
 
@@ -64,7 +64,6 @@ Se midió el plan de ejecución y el tiempo de respuesta de consultas sobre `mov
 | :--- | :--- | :--- | :--- |
 | `idx_movimiento_producto_fecha` | `movimiento_inventario` | `id_producto`, `fecha DESC` | Optimiza filtros por producto y ordenamientos cronológicos descendentes. |
 | `idx_lote_vencimiento` | `lote` | `fecha_vencimiento` | Facilita búsquedas y controles por fecha de caducidad de lotes. |
-| `idx_existencia_lote_ubicacion` | `existencia` | `id_lote`, `id_ubicacion` | Mejora consultas de disponibilidad agrupadas o filtradas por lote y ubicación. |
 
 ## 5. Módulo `JSONB` (`04_modulo_jsonb.sql`)
 
