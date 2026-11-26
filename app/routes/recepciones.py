@@ -51,7 +51,7 @@ def procesar_recepcion_acid(data: RecepcionRequest):
                 VALUES (1, %s, %s, %s, %s, %s, %s);
             """, (data.id_producto, data.id_lote, data.id_ubicacion, data.cantidad_aceptada, f"REC-{id_recepcion}", data.observaciones))
 
-            cur.execute("UPDATE orden_compra SET estado = 'Recibida' WHERE id_orden = %s;", (data.id_orden,))
+            cur.execute("UPDATE orden_compra SET estado = 'RECIBIDA' WHERE id_orden = %s;", (data.id_orden,))
 
             cur.execute("COMMIT;")
         return {"mensaje": "Recepción procesada con éxito (ACID)", "id_recepcion": id_recepcion}
