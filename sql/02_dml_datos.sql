@@ -63,3 +63,12 @@ VALUES ('2026-11-01', '2026-11-05', 'Aprobada', 1),
 ('2026-11-03', '2026-11-05', 'Cancelada', 5);
 
 UPDATE orden_compra SET estado = 'Recibida' WHERE id_orden = 2;
+
+-- 8. Tabla DETALLE_ORDEN_COMPRA
+INSERT INTO detalle_orden_compra (cantidad_solicitada, costo_unitario, id_orden, id_producto)
+VALUES (100, 9.50, 1, 1),
+(50, 12.80, 2, 2),
+(50, 2.80, 3, 3),
+(50, 14.00, 4, 4),
+(50, 5.20, 5, 5);
+
