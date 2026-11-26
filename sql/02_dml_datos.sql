@@ -121,3 +121,10 @@ VALUES ('Ingreso por Compra', 'Entrada de mercadería desde proveedor', 'ENTRADA
        ('Salida por Venta', 'Despacho de mercadería hacia tienda o cliente', 'SALIDA'),
        ('Ajuste Positivo', 'Incremento de stock por conteo físico', 'ENTRADA'),
        ('Merma o Vencimiento', 'Baja de inventario por deterioro', 'SALIDA');
+
+-- 15. Tabla MOVIMIENTO_INVENTARIO
+INSERT INTO movimiento_inventario (id_tipo_movimiento, id_producto, id_lote, id_ubicacion, cantidad, referencia_operacion, observaciones)
+VALUES (1, 1, 1, 1, 100.0000, 'REC-001', 'Ingreso inicial de Leche Laive'),
+       (1, 2, 2, 3, 48.0000, 'REC-002', 'Ingreso de Chorizo a cámara fría'),
+       (2, 1, 1, 1, 10.0000, 'PED-104', 'Despacho a sala de ventas'),
+       (4, 2, 2, 3, 2.0000, 'MER-005', 'Empaque dañado en recepción');
