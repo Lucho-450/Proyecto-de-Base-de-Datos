@@ -75,3 +75,12 @@ CREATE TABLE detalle_orden_compra (
     id_producto INTEGER NOT NULL REFERENCES producto(id_producto),
     UNIQUE (id_orden, id_producto)
 );
+
+-- 9. Tabla UBICACION_ALMACEN
+CREATE TABLE ubicacion_almacen (
+    id_ubicacion SERIAL PRIMARY KEY,
+    codigo VARCHAR(20) UNIQUE NOT NULL,
+    tipo_ubicacion VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(255) NULL,
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('ACTIVO', 'INACTIVO'))
+);
