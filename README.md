@@ -50,13 +50,13 @@ Se midió el plan de ejecución y el tiempo de respuesta de consultas sobre `mov
 <img width="1067" height="742" alt="Captura de pantalla 2026-11-26 000850" src="https://github.com/user-attachments/assets/512cfebb-655f-44cf-97ae-5ac9fdc2ecfc" />
 
 
-* **Plan observado:** Indica aquí si usó `Seq Scan` u otro nodo y cuál fue el `Execution Time` inicial.
+* **Plan observado:** `Execution Time:` 0.028 ms.
 
 ### 4.2. Prueba DESPUÉS de crear los índices
 <img width="1077" height="750" alt="Captura de pantalla 2026-11-26 001403" src="https://github.com/user-attachments/assets/e0518922-55c4-4345-9947-388e154864fe" />
 
 
-* **Plan observado:** Indica aquí el plan obtenido tras indexar (por ejemplo, `Index Scan` o `Index Only Scan`) y el nuevo `Execution Time`.
+* **Plan observado:** `Execution Time:` 0.032 ms .
 
 ### 4.3. Índices creados y justificación
 
