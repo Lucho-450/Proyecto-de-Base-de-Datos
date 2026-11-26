@@ -92,3 +92,13 @@ VALUES ('LOT-2026-001', '2026-10-10', '2027-01-10', 1),
 ('LOT-2026-003', '2026-10-20', '2026-12-20', 3),
 ('LOT-2026-007', '2026-11-01', '2026-12-01', 4),
 ('LOT-2026-008', '2026-11-02', '2026-12-18', 5);
+
+-- 11. Tabla EXISTENCIA
+INSERT INTO existencia (id_lote, id_ubicacion, cantidad_disponible, cantidad_reservada)
+VALUES (1, 1, 150, 20),
+       (1, 2, 100, 0),
+       (2, 1, 200, 50),
+       (2, 3, 75, 10),
+       (5, 4, 250, 0);
+
+UPDATE existencia SET cantidad_disponible = 140, cantidad_reservada = 30 WHERE id_existencia = 1;
