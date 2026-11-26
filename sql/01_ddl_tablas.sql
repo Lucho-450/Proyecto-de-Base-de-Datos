@@ -84,3 +84,13 @@ CREATE TABLE ubicacion_almacen (
     descripcion VARCHAR(255) NULL,
     estado VARCHAR(20) NOT NULL CHECK (estado IN ('ACTIVO', 'INACTIVO'))
 );
+
+-- 10. Tabla LOTE
+CREATE TABLE lote (
+    id_lote SERIAL PRIMARY KEY,
+    numero_lote VARCHAR(20) UNIQUE NOT NULL,
+    fecha_fabricacion DATE NULL,
+    fecha_vencimiento DATE NOT NULL,
+    id_producto INTEGER NOT NULL REFERENCES producto(id_producto),
+    CHECK (fecha_fabricacion IS NULL OR fecha_vencimiento > fecha_fabricacion)
+);
