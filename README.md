@@ -47,12 +47,14 @@ El sistema cubre el ciclo operativo de inventario y abastecimiento mediante **18
 Se midió el plan de ejecución y el tiempo de respuesta de consultas sobre `movimiento_inventario` antes y después de crear los índices en `03_indices_optimizacion.sql`.
 
 ### 4.1. Prueba ANTES de crear los índices
-> *(Pega aquí tu captura de pantalla del `EXPLAIN ANALYZE` sin índice)*
+<img width="1067" height="742" alt="Captura de pantalla 2026-11-26 000850" src="https://github.com/user-attachments/assets/512cfebb-655f-44cf-97ae-5ac9fdc2ecfc" />
+
 
 * **Plan observado:** Indica aquí si usó `Seq Scan` u otro nodo y cuál fue el `Execution Time` inicial.
 
 ### 4.2. Prueba DESPUÉS de crear los índices
-> *(Pega aquí tu captura de pantalla del `EXPLAIN ANALYZE` con los índices creados)*
+<img width="1077" height="750" alt="Captura de pantalla 2026-11-26 001403" src="https://github.com/user-attachments/assets/e0518922-55c4-4345-9947-388e154864fe" />
+
 
 * **Plan observado:** Indica aquí el plan obtenido tras indexar (por ejemplo, `Index Scan` o `Index Only Scan`) y el nuevo `Execution Time`.
 
