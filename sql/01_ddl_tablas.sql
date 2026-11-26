@@ -94,3 +94,12 @@ CREATE TABLE lote (
     id_producto INTEGER NOT NULL REFERENCES producto(id_producto),
     CHECK (fecha_fabricacion IS NULL OR fecha_vencimiento > fecha_fabricacion)
 );
+
+-- 11. Tabla EXISTENCIA
+CREATE TABLE existencia (
+    id_existencia SERIAL PRIMARY KEY,
+    id_lote INT NOT NULL REFERENCES lote(id_lote) ON DELETE CASCADE,
+    id_ubicacion INT NOT NULL REFERENCES ubicacion_almacen(id_ubicacion),
+    cantidad_disponible INT NOT NULL DEFAULT 0 CHECK (cantidad_disponible >= 0),
+    cantidad_reservada INT NOT NULL DEFAULT 0 CHECK (cantidad_reservada >= 0)
+);
