@@ -166,6 +166,14 @@ CREATE TABLE detalle_conteo (
     cantidad_contada NUMERIC(14,4) NOT NULL DEFAULT 0 CHECK (cantidad_contada >= 0)
 );
 
-
+-- 18. Tabla AJUSTE_INVENTARIO
+CREATE TABLE ajuste_inventario (
+    id_ajuste SERIAL PRIMARY KEY,
+    id_detalle_conteo INT NOT NULL REFERENCES detalle_conteo(id_detalle_conteo) ON DELETE CASCADE,
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    cantidad_ajustada NUMERIC(14,4) NOT NULL,
+    motivo VARCHAR(255) NOT NULL,
+    estado VARCHAR(20) NOT NULL
+);
 
 
