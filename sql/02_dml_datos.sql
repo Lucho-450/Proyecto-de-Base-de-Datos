@@ -133,3 +133,9 @@ VALUES (1, 1, 1, 1, 100.0000, 'REC-001', 'Ingreso inicial de Leche Laive'),
 INSERT INTO conteo_inventario (fecha_inicio, fecha_fin, estado, observaciones)
 VALUES ('2026-11-10 08:00:00', '2026-11-10 12:30:00', 'CERRADO', 'Inventario cíclico de lácteos y embutidos'),
        ('2026-11-15 09:00:00', NULL, 'EN_PROCESO', 'Conteo general de zona refrigerada');
+
+-- 17. Tabla DETALLE_CONTEO
+INSERT INTO detalle_conteo (id_conteo, id_producto, id_lote, id_ubicacion, cantidad_sistema, cantidad_contada)
+VALUES (1, 1, 1, 1, 140.0000, 138.0000),
+       (1, 2, 2, 3, 75.0000, 75.0000),
+       (2, 5, 5, 4, 250.0000, 245.0000);
