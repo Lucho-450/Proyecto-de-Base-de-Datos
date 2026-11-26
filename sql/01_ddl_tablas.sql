@@ -130,3 +130,21 @@ CREATE TABLE tipo_movimiento (
     descripcion VARCHAR(255),
     naturaleza VARCHAR(20) NOT NULL CHECK (naturaleza IN ('ENTRADA', 'SALIDA'))
 );
+
+
+-- 15. Tabla MOVIMIENTO_INVENTARIO
+CREATE TABLE movimiento_inventario (
+    id_movimiento SERIAL PRIMARY KEY,
+    id_tipo_movimiento INT NOT NULL REFERENCES tipo_movimiento(id_tipo_movimiento),
+    id_producto INT NOT NULL REFERENCES producto(id_producto),
+    id_lote INT REFERENCES lote(id_lote) ON DELETE SET NULL,
+    id_ubicacion INT REFERENCES ubicacion_almacen(id_ubicacion) ON DELETE SET NULL,
+    fecha TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    cantidad NUMERIC(14,4) NOT NULL CHECK (cantidad > 0),
+    referencia_operacion VARCHAR(100),
+    observaciones TEXT
+);
+
+
+
+
