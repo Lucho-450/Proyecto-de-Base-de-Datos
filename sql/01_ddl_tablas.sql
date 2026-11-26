@@ -55,3 +55,13 @@ CREATE TABLE producto_proveedor (
     id_producto INTEGER NOT NULL REFERENCES producto(id_producto) ON DELETE CASCADE,
     UNIQUE (id_proveedor, id_producto)
 );
+
+-- 7. Tabla ORDEN_COMPRA
+CREATE TABLE orden_compra (
+    id_orden SERIAL PRIMARY KEY,
+    fecha_emision DATE NOT NULL,
+    fecha_entrega_prevista DATE NOT NULL,
+    estado VARCHAR(20) NOT NULL CHECK (estado IN ('PENDIENTE', 'ENVIADA', 'RECIBIDA', 'CANCELADA')),
+    id_proveedor INTEGER NOT NULL REFERENCES proveedor(id_proveedor),
+    CHECK (fecha_entrega_prevista >= fecha_emision)
+);
