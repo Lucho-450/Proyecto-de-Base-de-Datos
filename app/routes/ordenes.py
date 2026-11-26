@@ -27,7 +27,7 @@ def crear_orden_completa(orden: NuevaOrden):
 
             cur.execute("""
                 INSERT INTO orden_compra (fecha_emision, fecha_entrega_prevista, estado, id_proveedor)
-                VALUES (%s, %s, 'Pendiente', %s) RETURNING id_orden;
+                VALUES (%s, %s, 'PENDIENTE', %s) RETURNING id_orden;
             """, (orden.fecha_emision, orden.fecha_entrega_prevista, orden.id_proveedor))
             id_orden = cur.fetchone()["id_orden"]
 
