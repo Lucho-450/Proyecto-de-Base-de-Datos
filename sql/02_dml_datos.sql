@@ -36,3 +36,11 @@ UPDATE regla_reposicion
 SET stock_maximo = 200,
     punto_reposicion = 80
 WHERE id_producto = 5;
+
+-- 5. Tabla PROVEEDOR
+INSERT INTO proveedor (ruc, razon_social, direccion, telefono, correo, estado)
+VALUES ('20100094212', 'Laive S.A.', 'Av. Nicolás Arriola 740, La Victoria', '014175000', 'ventas@laive.com.pe', 'ACTIVO'),
+       ('20100035121', 'Otto Kunz S.A.C.', 'Av. Los Frutales 450, Ate', '013495600', 'pedidos@ottokunz.com.pe', 'ACTIVO'),
+       ('20512345678', 'Panificadora Del Sur S.A.C.', 'Jr. Huancavelica 320, Cercado de Lima', '014281234', 'contacto@panificadorasur.pe', 'INACTIVO'),
+       ('20567891234', 'Pesquera Mar Azul S.A.', 'Av. Néstor Gambetta 1250, Callao', '015772200', 'ventas@maraazul.com.pe', 'ACTIVO'),
+       ('20601234567', 'Agrícola Frutas del Valle E.I.R.L.', 'Mercado Mayorista de Frutas, La Victoria', '998112233', 'frutasdelvalle@gmail.com', 'ACTIVO');
