@@ -42,29 +42,69 @@ El sistema cubre el ciclo operativo de inventario y abastecimiento mediante **18
 4. Ejecutar `sql/03_indices_optimizacion.sql` para aplicar los índices y validar planes de ejecución.
 5. Ejecutar `sql/04_modulo_jsonb.sql` para habilitar el módulo `JSONB`.
 
-## 4. Optimización y Pruebas de Rendimiento (`EXPLAIN ANALYZE`)
+## 4. Optimización y Pruebas de Rendimiento (EXPLAIN ANALYZE)
 
-Se midió el plan de ejecución y el tiempo de respuesta de consultas sobre `movimiento_inventario` antes y después de crear los índices en `03_indices_optimizacion.sql`.
+Se evaluó el comportamiento de dos índices mediante consultas ejecutadas antes y después de su creación. Para ello, se utilizó EXPLAIN ANALYZE en las tablas movimiento_inventario y lote.
 
-### 4.1. Prueba ANTES de crear los índices
-<img width="1067" height="742" alt="Captura de pantalla 2026-11-26 000850" src="https://github.com/user-attachments/assets/512cfebb-655f-44cf-97ae-5ac9fdc2ecfc" />
+### 4.1. Consulta de movimientos antes de crear el índice
 
+Se evaluó la búsqueda de movimientos por producto y fecha.
 
-* **Plan observado:** `Execution Time:` 0.028 ms.
-
-### 4.2. Prueba DESPUÉS de crear los índices
-<img width="1077" height="750" alt="Captura de pantalla 2026-11-26 001403" src="https://github.com/user-attachments/assets/e0518922-55c4-4345-9947-388e154864fe" />
+<img width="890" height="743" alt="image" src="https://github.com/user-attachments/assets/dd59cf22-e5f6-417e-b2ba-164f3afc2ec7" />
 
 
-* **Plan observado:** `Execution Time:` 0.032 ms .
+- *Plan de ejecución:* Seq Scan.
+- *Planning Time:* 0.216 ms.
+- *Execution Time:* 0.028 ms.
+- *Filas encontradas:* 2.
 
-### 4.3. Índices creados y justificación
+### 4.2. Consulta de lotes antes de crear el índice
+
+Se evaluó la búsqueda de lotes según su fecha de vencimiento.
+
+<img width="790" height="748" alt="image" src="https://github.com/user-attachments/assets/cbeed35d-11dc-490c-af7d-340484253871" />
+
+
+- *Plan de ejecución:* Seq Scan.
+- *Planning Time:* 0.171 ms.
+- *Execution Time:* 0.026 ms.
+- *Filas encontradas:* 3.
+
+### 4.3. Consulta de movimientos después de crear el índice
+
+Se repitió la misma consulta después de crear el índice idx_movimiento_producto_fecha.
+
+<img width="947" height="752" alt="image" src="https://github.com/user-attachments/assets/b4e137f9-59b1-4f66-85fa-9064586baf5e" />
+
+
+- *Plan de ejecución:* Seq Scan.
+- *Planning Time:* 0.327 ms.
+- *Execution Time:* 0.033 ms.
+- *Filas encontradas:* 2.
+
+### 4.4. Consulta de lotes después de crear el índice
+
+Se repitió la misma consulta después de crear el índice idx_lote_vencimiento.
+
+<img width="693" height="747" alt="image" src="https://github.com/user-attachments/assets/d9d4a9eb-9db8-467a-b2b1-6a59b7d0e335" />
+
+- *Plan de ejecución:* Seq Scan.
+- *Planning Time:* 0.236 ms.
+- *Execution Time:* 0.020 ms.
+- *Filas encontradas:* 3.
+
+### 4.5. Índices creados y justificación
 
 | Índice | Tabla | Columnas | Justificación técnica |
 | :--- | :--- | :--- | :--- |
-| `idx_movimiento_producto_fecha` | `movimiento_inventario` | `id_producto`, `fecha DESC` | Optimiza filtros por producto y ordenamientos cronológicos descendentes. |
-| `idx_lote_vencimiento` | `lote` | `fecha_vencimiento` | Facilita búsquedas y controles por fecha de caducidad de lotes. |
+| idx_movimiento_producto_fecha | movimiento_inventario | id_producto, fecha DESC | Facilita las consultas que filtran movimientos por producto y fecha, y puede apoyar ordenamientos cronológicos descendentes. |
+| idx_lote_vencimiento | lote | fecha_vencimiento | Facilita las consultas que filtran lotes por fecha de vencimiento. |
 
+### 4.6. Análisis de resultados
+
+En las pruebas realizadas, PostgreSQL utilizó Seq Scan en las cuatro ejecuciones, incluso después de crear los índices. Esto se debe a que las tablas contienen pocos registros y el planificador considera conveniente realizar un escaneo secuencial.
+
+Los tiempos de ejecución fueron muy pequeños y presentaron variaciones entre las pruebas. Por ello, con el volumen de datos utilizado no se pudo comprobar una mejora de rendimiento atribuible a los índices. Sin embargo, estos permiten preparar la base de datos para consultas sobre un mayor volumen de información.
 ## 5. Módulo `JSONB` (`04_modulo_jsonb.sql`)
 
 Se añadió la columna `atributos_extra` de tipo `JSONB` (con valor por defecto `'{}'::jsonb`) en la tabla `producto` para almacenar datos semiestructurados y variables según la categoría sin modificar el esquema relacional fijo. Además, se creó el índice invertido `idx_producto_atributos_gin` (`USING GIN`) para acelerar búsquedas dentro del `JSONB` y se cargaron atributos de ejemplo en los productos con `id_producto = 1` (datos de lácteos y refrigeración) e `id_producto = 4` (origen, estado de congelado y alérgenos). Al ejecutar el script en pgAdmin, **Messages** confirmó la ejecución (`Query returned successfully`) y **Data Output** mostró los registros actualizados con sus objetos `JSONB`.
