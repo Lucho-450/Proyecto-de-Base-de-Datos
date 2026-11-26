@@ -84,3 +84,11 @@ UPDATE ubicacion_almacen
 SET tipo_ubicacion = 'Cuarentena',
 descripcion = 'Zona de cuarentena'
 WHERE codigo = 'PISO-01';
+
+-- 10. Tabla LOTE
+INSERT INTO lote (numero_lote, fecha_fabricacion, fecha_vencimiento, id_producto)
+VALUES ('LOT-2026-001', '2026-10-10', '2027-01-10', 1),
+('LOT-2026-002', '2026-10-15', '2027-02-15', 2),
+('LOT-2026-003', '2026-10-20', '2026-12-20', 3),
+('LOT-2026-007', '2026-11-01', '2026-12-01', 4),
+('LOT-2026-008', '2026-11-02', '2026-12-18', 5);
