@@ -72,3 +72,15 @@ VALUES (100, 9.50, 1, 1),
 (50, 14.00, 4, 4),
 (50, 5.20, 5, 5);
 
+-- 9. Tabla UBICACION_ALMACEN
+INSERT INTO ubicacion_almacen (codigo, tipo_ubicacion, descripcion, estado)
+VALUES ('A-01-01', 'Estante', 'Estante A, nivel 1, posición 1', 'ACTIVO'),
+('B-02-01', 'Estante', 'Estante B, nivel 2, posición 1', 'ACTIVO'),
+('REF-01', 'Refrigerado', 'Cámara de refrigeración 1', 'ACTIVO'),
+('PISO-01', 'Piso', 'Zona de piso principal', 'ACTIVO'),
+('CUAR-01', 'Cuarentena', 'Zona de cuarentena', 'ACTIVO');
+
+UPDATE ubicacion_almacen
+SET tipo_ubicacion = 'Cuarentena',
+descripcion = 'Zona de cuarentena'
+WHERE codigo = 'PISO-01';
