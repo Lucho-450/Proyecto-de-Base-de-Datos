@@ -13,3 +13,9 @@ WHERE id_producto = 1;
 UPDATE producto
 SET atributos_extra = '{"origen": "Mar peruano", "congelado": false, "alergenos": ["pescado"]}'::jsonb
 WHERE id_producto = 4;
+
+-- Busqueda de productos que contienen un atributo especifico
+EXPLAIN ANALYZE
+SELECT id_producto, nombre, atributos_extra
+FROM producto
+WHERE atributos_extra @> '{"lactosa": true}'::jsonb;
