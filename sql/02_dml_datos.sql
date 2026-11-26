@@ -44,3 +44,11 @@ VALUES ('20100094212', 'Laive S.A.', 'Av. Nicolás Arriola 740, La Victoria', '0
        ('20512345678', 'Panificadora Del Sur S.A.C.', 'Jr. Huancavelica 320, Cercado de Lima', '014281234', 'contacto@panificadorasur.pe', 'INACTIVO'),
        ('20567891234', 'Pesquera Mar Azul S.A.', 'Av. Néstor Gambetta 1250, Callao', '015772200', 'ventas@maraazul.com.pe', 'ACTIVO'),
        ('20601234567', 'Agrícola Frutas del Valle E.I.R.L.', 'Mercado Mayorista de Frutas, La Victoria', '998112233', 'frutasdelvalle@gmail.com', 'ACTIVO');
+
+-- 6. Tabla PRODUCTO_PROVEEDOR
+INSERT INTO producto_proveedor (codigo_proveedor, costo_referencia, plazo_entrega, id_proveedor, id_producto)
+VALUES ('LAI-001', 9.50, 2, 1, 1),
+('OTK-014', 12.80, 3, 2, 2),
+('PDS-007', 2.80, 1, 3, 3),
+('PMA-032', 14.00, 2, 4, 4),
+('AFV-101', 5.20, 1, 5, 5);
