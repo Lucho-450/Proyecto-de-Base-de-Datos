@@ -103,3 +103,12 @@ CREATE TABLE existencia (
     cantidad_disponible INT NOT NULL DEFAULT 0 CHECK (cantidad_disponible >= 0),
     cantidad_reservada INT NOT NULL DEFAULT 0 CHECK (cantidad_reservada >= 0)
 );
+
+-- 12. Tabla RECEPCION_MERCADERIA
+CREATE TABLE recepcion_mercaderia (
+    id_recepcion SERIAL PRIMARY KEY,
+    id_orden INT NOT NULL REFERENCES orden_compra(id_orden),
+    fecha_recepcion DATE NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    observaciones VARCHAR(255) NULL
+);
