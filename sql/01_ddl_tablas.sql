@@ -101,7 +101,7 @@ CREATE TABLE existencia (
     id_lote INT NOT NULL REFERENCES lote(id_lote) ON DELETE CASCADE,
     id_ubicacion INT NOT NULL REFERENCES ubicacion_almacen(id_ubicacion),
     cantidad_disponible INT NOT NULL DEFAULT 0 CHECK (cantidad_disponible >= 0),
-    cantidad_reservada INT NOT NULL DEFAULT 0 CHECK (cantidad_reservada >= 0)
+    cantidad_reservada INT NOT NULL DEFAULT 0 CHECK (cantidad_reservada >= 0),
     UNIQUE (id_lote, id_ubicacion)
 );
 
