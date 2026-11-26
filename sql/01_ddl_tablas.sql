@@ -145,6 +145,15 @@ CREATE TABLE movimiento_inventario (
     observaciones TEXT
 );
 
+-- 16. Tabla CONTEO_INVENTARIO
+CREATE TABLE conteo_inventario (
+    id_conteo SERIAL PRIMARY KEY,
+    fecha_inicio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fecha_fin TIMESTAMP,
+    estado VARCHAR(20) NOT NULL,
+    observaciones TEXT
+);
+
 
 
 
