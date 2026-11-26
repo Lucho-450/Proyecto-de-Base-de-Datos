@@ -102,6 +102,7 @@ CREATE TABLE existencia (
     id_ubicacion INT NOT NULL REFERENCES ubicacion_almacen(id_ubicacion),
     cantidad_disponible INT NOT NULL DEFAULT 0 CHECK (cantidad_disponible >= 0),
     cantidad_reservada INT NOT NULL DEFAULT 0 CHECK (cantidad_reservada >= 0)
+    UNIQUE (id_lote, id_ubicacion)
 );
 
 -- 12. Tabla RECEPCION_MERCADERIA
