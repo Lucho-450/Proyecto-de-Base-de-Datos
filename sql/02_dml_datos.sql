@@ -102,3 +102,9 @@ VALUES (1, 1, 150, 20),
        (5, 4, 250, 0);
 
 UPDATE existencia SET cantidad_disponible = 140, cantidad_reservada = 30 WHERE id_existencia = 1;
+
+-- 12. Tabla RECEPCION_MERCADERIA
+INSERT INTO recepcion_mercaderia (id_orden, fecha_recepcion, estado, observaciones)
+VALUES (1, '2026-11-05', 'COMPLETADA', 'Entrega conforme dentro del plazo'),
+       (2, '2026-11-06', 'COMPLETADA', 'Recepción parcial verificada en frío'),
+       (4, '2026-11-07', 'COMPLETADA', 'Producto fresco sin observaciones');
