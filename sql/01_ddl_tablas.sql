@@ -109,7 +109,8 @@ CREATE TABLE recepcion_mercaderia (
     id_recepcion SERIAL PRIMARY KEY,
     id_orden INT NOT NULL REFERENCES orden_compra(id_orden),
     fecha_recepcion DATE NOT NULL,
-    estado VARCHAR(20) NOT NULL,
+    estado VARCHAR(20) NOT NULL
+        CHECK (estado IN ('COMPLETADA', 'PENDIENTE', 'ANULADA')),
     observaciones VARCHAR(255) NULL
 );
 
@@ -120,7 +121,8 @@ CREATE TABLE detalle_recepcion (
     id_lote INT NOT NULL REFERENCES lote(id_lote),
     cantidad_recibida INT NOT NULL CHECK (cantidad_recibida > 0),
     cantidad_aceptada INT NOT NULL CHECK (cantidad_aceptada >= 0),
-    cantidad_rechazada INT NOT NULL CHECK (cantidad_rechazada >= 0)
+    cantidad_rechazada INT NOT NULL CHECK (cantidad_rechazada >= 0),
+    CHECK (cantidad_recibida = cantidad_aceptada + cantidad_rechazada)
 );
 
 -- 14. Tabla TIPO_MOVIMIENTO
