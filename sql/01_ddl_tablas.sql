@@ -122,3 +122,11 @@ CREATE TABLE detalle_recepcion (
     cantidad_aceptada INT NOT NULL CHECK (cantidad_aceptada >= 0),
     cantidad_rechazada INT NOT NULL CHECK (cantidad_rechazada >= 0)
 );
+
+-- 14. Tabla TIPO_MOVIMIENTO
+CREATE TABLE tipo_movimiento (
+    id_tipo_movimiento SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(255),
+    naturaleza VARCHAR(20) NOT NULL CHECK (naturaleza IN ('ENTRADA', 'SALIDA'))
+);
