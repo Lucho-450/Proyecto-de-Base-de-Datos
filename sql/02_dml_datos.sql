@@ -114,3 +114,10 @@ INSERT INTO detalle_recepcion (id_recepcion, id_lote, cantidad_recibida, cantida
 VALUES (1, 1, 100, 100, 0),
        (2, 2, 50, 48, 2),
        (3, 4, 50, 50, 0);
+
+-- 14. Tabla TIPO_MOVIMIENTO
+INSERT INTO tipo_movimiento (nombre, descripcion, naturaleza)
+VALUES ('Ingreso por Compra', 'Entrada de mercadería desde proveedor', 'ENTRADA'),
+       ('Salida por Venta', 'Despacho de mercadería hacia tienda o cliente', 'SALIDA'),
+       ('Ajuste Positivo', 'Incremento de stock por conteo físico', 'ENTRADA'),
+       ('Merma o Vencimiento', 'Baja de inventario por deterioro', 'SALIDA');
