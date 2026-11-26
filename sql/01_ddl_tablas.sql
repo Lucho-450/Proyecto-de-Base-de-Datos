@@ -44,3 +44,14 @@ CREATE TABLE proveedor (
     correo VARCHAR(100) NULL,
     estado VARCHAR(20) NOT NULL CHECK (estado IN ('ACTIVO', 'INACTIVO'))
 );
+
+-- 6. Tabla PRODUCTO_PROVEEDOR
+CREATE TABLE producto_proveedor (
+    id_producto_proveedor SERIAL PRIMARY KEY,
+    codigo_proveedor VARCHAR(50) NOT NULL,
+    costo_referencia NUMERIC(10,2) NOT NULL CHECK (costo_referencia >= 0),
+    plazo_entrega INTEGER NOT NULL CHECK (plazo_entrega > 0),
+    id_proveedor INTEGER NOT NULL REFERENCES proveedor(id_proveedor) ON DELETE CASCADE,
+    id_producto INTEGER NOT NULL REFERENCES producto(id_producto) ON DELETE CASCADE,
+    UNIQUE (id_proveedor, id_producto)
+);
