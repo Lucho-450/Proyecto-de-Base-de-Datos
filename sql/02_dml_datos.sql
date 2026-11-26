@@ -108,3 +108,9 @@ INSERT INTO recepcion_mercaderia (id_orden, fecha_recepcion, estado, observacion
 VALUES (1, '2026-11-05', 'COMPLETADA', 'Entrega conforme dentro del plazo'),
        (2, '2026-11-06', 'COMPLETADA', 'Recepción parcial verificada en frío'),
        (4, '2026-11-07', 'COMPLETADA', 'Producto fresco sin observaciones');
+
+-- 13. Tabla DETALLE_RECEPCION
+INSERT INTO detalle_recepcion (id_recepcion, id_lote, cantidad_recibida, cantidad_aceptada, cantidad_rechazada)
+VALUES (1, 1, 100, 100, 0),
+       (2, 2, 50, 48, 2),
+       (3, 4, 50, 50, 0);
