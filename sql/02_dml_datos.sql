@@ -128,3 +128,8 @@ VALUES (1, 1, 1, 1, 100.0000, 'REC-001', 'Ingreso inicial de Leche Laive'),
        (1, 2, 2, 3, 48.0000, 'REC-002', 'Ingreso de Chorizo a cámara fría'),
        (2, 1, 1, 1, 10.0000, 'PED-104', 'Despacho a sala de ventas'),
        (4, 2, 2, 3, 2.0000, 'MER-005', 'Empaque dañado en recepción');
+
+-- 16. Tabla CONTEO_INVENTARIO
+INSERT INTO conteo_inventario (fecha_inicio, fecha_fin, estado, observaciones)
+VALUES ('2026-11-10 08:00:00', '2026-11-10 12:30:00', 'CERRADO', 'Inventario cíclico de lácteos y embutidos'),
+       ('2026-11-15 09:00:00', NULL, 'EN_PROCESO', 'Conteo general de zona refrigerada');
